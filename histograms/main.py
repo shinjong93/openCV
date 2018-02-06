@@ -1,14 +1,20 @@
 import cv2
 import numpy as np
-import random
 from matplotlib import pyplot as plt
 
-img1 = cv2.imread('pseudo.jpg',cv2.IMREAD_GRAYSCALE)
-#img1 = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
-hist1 = cv2.calcHist([img1],[0],None,[256],[0,256])
+img = cv2.imread('../images/pseudo.jpg',0);
 
-plt.subplot(221),plt.imshow(img1,'gray'),plt.title('Red Line')
-plt.subplot(223),plt.plot(hist1,color='r')
-plt.xlim([0,256])
-plt.show()
+clahe = cv2.createCLAHE(clipLimit = 2.0, tileGridSize = (8,8))
+img2 = clahe.apply(img)
+
+img = cv2.resize(img,(400,400))
+img2 = cv2.resize(img2,(400,400))
+
+dst = np.hstack((img,img2))
+
+cv2.imwrite('../images/histPseudo.jpg',img2)
+
+cv2.imshow('img',dst)
+cv2.waitKey()
+cv2.destroyAllWindows()

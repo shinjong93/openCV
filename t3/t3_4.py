@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-img = cv2.imread('pseudo2.jpg',cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('../images/fourierHist1.jpg',cv2.IMREAD_GRAYSCALE)
 
-thresholder = 160
+thresholder = 1
 whiteValue = 255
 
 blur = cv2.GaussianBlur(img,(5,5),0)
